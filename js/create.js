@@ -1,26 +1,3 @@
-var gameAdd = function(){
-  game.add.sprite(0, 0, 'sky');
-
-  scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
-  var platformsToadded = [
-    [0, (game.world.height - 64), 'ground', 2],
-    [400, 400, 'ground', 1],
-    [-150, 250, 'ground', 1]
-  ];
-  createPlatforms(platformsToadded);
-
-  var playerProperties = [32, (game.world.height - 150), 'dude', 0.2, 300];
-  var playersAnimations = [
-    ['left', [0, 1, 2, 3], 10, true],
-    ['right', [5, 6, 7, 8], 10, true]
-  ];
-  createPlayer(playerProperties, playersAnimations);
-
-  var numberOfStars = 12;
-  createStars(numberOfStars);
-};
-
 var X = 0;
 var Y = 1;
 var KEY = 2;
