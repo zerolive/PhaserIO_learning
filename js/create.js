@@ -3,11 +3,15 @@ var gameAdd = function(){
 
   scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
+  var platformsUnadded = [
+    [0, (game.world.height - 64), 'ground', 2],
+    [400, 400, 'ground', 1],
+    [-150, 250, 'ground', 1]
+  ];
+
   platforms = game.add.group();
     platforms.enableBody = true;
-    addPlatforms(0, (game.world.height - 64), 'ground', 2);
-    addPlatforms(400, 400, 'ground', 1);
-    addPlatforms(-150, 250, 'ground', 1);
+    addPlatforms(platformsUnadded);
 
   player = game.add.sprite(32, game.world.height - 150, 'dude');
     game.physics.arcade.enable(player);
@@ -22,10 +26,13 @@ var gameAdd = function(){
     createStars(12);
 };
 
-var addPlatforms = function(x, y, name, scale){
-  var ground = platforms.create(x, y, name);
-    ground.body.immovable = true;
-    ground.scale.setTo(scale, scale);
+var addPlatforms = function(platformsUnadded){
+  for(var i = 0; i < platformsUnadded.length; i++){
+    var platform = platformsUnadded[i];
+    var ground = platforms.create(platform[0], platform[1], platform[2]);
+        ground.body.immovable = true;
+        ground.scale.setTo(platform[3], platform[3]);
+  };
 };
 
 var createStars = function(numberOfStars){
