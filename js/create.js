@@ -11,15 +11,30 @@ var gameAdd = function(){
 
   createPlatforms(platformsToadded);
 
-  player = game.add.sprite(32, game.world.height - 150, 'dude');
-    game.physics.arcade.enable(player);
-    player.body.bounce.y = 0.2;
-    player.body.gravity.y = 300;
-    player.body.collideWorldBounds = true;
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+  var playerProperties = [32, (game.world.height - 150), 'dude', 0.2, 300];
+  var playersAnimations = [
+    ['left', [0, 1, 2, 3], 10, true],
+    ['right', [5, 6, 7, 8], 10, true]
+  ];
+  createPlayer(playerProperties, playersAnimations);
 
-    createStars(12);
+  createStars(12);
+};
+
+var createPlayer = function(properties, pAnimations){
+  player = game.add.sprite(properties[0], properties[1], properties[2]);
+    game.physics.arcade.enable(player);
+    player.body.collideWorldBounds = true;
+    player.body.bounce.y = properties[3];
+    player.body.gravity.y = properties[4];
+    playersAnimations(pAnimations);
+
+    function playersAnimations(pAnimations){
+      for(var i = 0; i<pAnimations.length; i++){
+        var animation = pAnimations[i];
+        player.animations.add(animation[0],animation[1],animation[2],animation[3]);
+      };
+    };
 };
 
 var createPlatforms = function(platformsToadded){
