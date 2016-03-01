@@ -22,14 +22,14 @@ var overlaps = function(bodiesOverlaps){
     };
 };
 
-function collectStar (player, star) {
+var collectStar = function(player, star) {
 
     star.kill();
     score += 10;
     scoreText.text = 'Score: ' + score;
 };
 
-function dudeMoviment(hSpeed, vSpeed){
+var dudeMoviment = function(hSpeed, vSpeed){
 
     var cursors = game.input.keyboard.createCursorKeys();
 
