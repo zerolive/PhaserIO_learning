@@ -28,16 +28,25 @@ describe("Game File", function(){
 			expect(game.parent).toEqual(parentArgument);
 		});
 	});
+
 	describe("has a method preload", function(){
 		it("is defined", function(){
 			expect(preload).toBeDefined();
 		});
+		it("has a method preloadImages defined", function(){
+			expect(preloadImages).toBeDefined();
+		});
+		it("has a method preloadSpritesheet defined", function(){
+			expect(preloadSpritesheet).toBeDefined();
+		});
 	});
+
 	describe("has a method create", function(){
 		it("is defined", function(){
 			expect(create).toBeDefined();
 		});
 	});
+
 	describe("has a method update", function(){
 		it("is defined", function(){
 			expect(update).toBeDefined();
