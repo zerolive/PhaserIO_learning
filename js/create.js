@@ -8,7 +8,6 @@ var gameAdd = function(){
     [400, 400, 'ground', 1],
     [-150, 250, 'ground', 1]
   ];
-
   createPlatforms(platformsToadded);
 
   var playerProperties = [32, (game.world.height - 150), 'dude', 0.2, 300];
@@ -18,21 +17,35 @@ var gameAdd = function(){
   ];
   createPlayer(playerProperties, playersAnimations);
 
-  createStars(12);
+  var numberOfStars = 12;
+  createStars(numberOfStars);
 };
 
-var createPlayer = function(properties, pAnimations){
-  player = game.add.sprite(properties[0], properties[1], properties[2]);
+var X = 0;
+var Y = 1;
+var KEY = 2;
+var BOUNCE = 3;
+var GRAVITY = 4;
+var NAME = 0; //repeated in other file
+var FRAMES = 1;
+var FRAMERATE = 2;
+var LOOP = 3;
+
+var createPlayer = function(properties, animations){
+  player = game.add.sprite(properties[X], properties[Y], properties[KEY]);
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
-    player.body.bounce.y = properties[3];
-    player.body.gravity.y = properties[4];
-    playersAnimations(pAnimations);
+    player.body.bounce.y = properties[BOUNCE];
+    player.body.gravity.y = properties[GRAVITY];
+    playersAnimations(animations);
 
-    function playersAnimations(pAnimations){
-      for(var i = 0; i<pAnimations.length; i++){
-        var animation = pAnimations[i];
-        player.animations.add(animation[0],animation[1],animation[2],animation[3]);
+    function playersAnimations(animations){
+      for(var i = 0; i<animations.length; i++){
+        var animation = animations[i];
+        player.animations.add(animation[NAME],
+                                            animation[FRAMES],
+                                            animation[FRAMERATE],
+                                            animation[LOOP]);
       };
     };
 };
@@ -56,7 +69,7 @@ var createPlatforms = function(platformsToadded){
 var createStars = function(numberOfStars){
   stars = game.add.group();
     stars.enableBody = true;
-    addStars(12);
+    addStars(numberOfStars);
 
   function addStars(numberOfStars){
     for(var i = 0; i < numberOfStars; i++){
