@@ -56,3 +56,15 @@ var createStars = function(numberOfStars){
     };
   };
 };
+
+var addScoreText = function(){
+  scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+};
+
+var addBackground = function(){
+  game.add.sprite(0, 0, 'sky');
+};
+
+var startPhysicsSystem = function(){
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+};

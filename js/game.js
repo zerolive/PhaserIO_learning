@@ -28,11 +28,12 @@ function preload() {
 };
 
 function create() {
-  game.physics.startSystem(Phaser.Physics.ARCADE);
 
-  game.add.sprite(0, 0, 'sky');
+  startPhysicsSystem();
 
-  scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+  addBackground();
+
+  addScoreText();
 
   var platformsToadded = [
     [0, (game.world.height - 64), 'ground', 2],
